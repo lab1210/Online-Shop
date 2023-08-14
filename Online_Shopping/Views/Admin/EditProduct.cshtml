@@ -1,0 +1,101 @@
+﻿
+@model Online_Shopping.Resources.ProductResource
+@{
+    ViewBag.Title = "EditProduct";
+    Layout = "~/Views/Shared/_LayoutList.cshtml";
+}
+
+<div class="container-fluid px-5">
+    <br />
+    @using (Html.BeginForm("EditProduct", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <!-- Modal content goes here -->
+        <div class="modal-dialog modal-lg ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Product</h5>
+                </div>
+                <br />
+                <div class="modal-body">
+
+                    <div class="container">
+
+                        <div class="card-body ">
+                            <div class="row ">
+                                <div class="col-lg-3 col-sm-6 col-12">
+
+                                    Name: @Html.EditorFor(c => c.Name)
+                                    @Html.ValidationMessageFor(c => c.Name, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="col-lg-3 col-sm-6 col-12">
+
+                                    Category:  @Html.DropDownListFor(model => model.CategoryID, ViewBag.categories as SelectList, "Select a Category", new { @class = "form - control" })
+                                    @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="col-lg-3 col-sm-6 col-12">
+
+                                    Supplier:  @Html.DropDownListFor(model => model.SupplierID, ViewBag.supplier as SelectList, "Select a Supplier", new { @class = "form - control" })
+                                    @Html.ValidationMessageFor(model => model.SupplierID, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="col-lg-3 col-sm-6 col-12">
+
+                                    SKU: @Html.EditorFor(c => c.SKU)
+                                    @Html.ValidationMessageFor(c => c.SKU, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="col-lg-3 col-sm-6 col-12">
+
+                                    Price: @Html.EditorFor(c => c.price)
+                                    @Html.ValidationMessageFor(c => c.price, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="col-lg-3 col-sm-6 col-12">
+
+                                    Discount Price: @Html.EditorFor(c => c.Discount_Price)
+                                    @Html.ValidationMessageFor(c => c.Discount_Price, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="col-lg-3 col-sm-6 col-12">
+
+                                    Description: @Html.EditorFor(c => c.description)
+                                    @Html.ValidationMessageFor(c => c.description, "", new { @class = "text-danger" })
+
+                                </div>
+
+
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <div style="display:flex">
+                                            <label>Product Image</label>
+                                        </div>
+
+                                        <div class="image-upload">
+                                            @Html.TextBoxFor(model => model.image, new { type = "file" })
+                                            <div class="image-uploads">
+                                                <img src="" alt="img">
+                                            </div>
+                                            @Html.ValidationMessageFor(c => c.image, "", new { @class = "text-danger" })
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="modal-footer justify-content-center">
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

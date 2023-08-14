@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Online_Shopping.Models.ProductReport>
+
+@{
+    ViewBag.Title = "Inventory";
+    Layout = "~/Views/Shared/_LayoutList.cshtml";
+
+}
+<div class="container-fluid px-5">
+
+    <br />
+    <div class="page-header">
+        <div class="page-title">
+            <i class="fas fa-table me-1"></i>
+
+            <h4>Inventory</h4>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+
+            @foreach (var item in Model)
+            {
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="@item.imagepath" alt="Image" class="img-fluid" style="max-height: 150px; border-radius: 5px; padding: 2px;" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.DisplayFor(c => item.Name)</h5>
+                                <p class="card-text">Quantity in Stock: @Html.DisplayFor(c => item.InStockQuantity)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

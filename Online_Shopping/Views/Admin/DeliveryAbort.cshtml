@@ -1,0 +1,45 @@
+﻿@model Online_Shopping.Models.AbortedDeleveries
+@{
+    ViewBag.Title = "DeliveryAbort";
+    Layout = "~/Views/Shared/_LayoutDriver.cshtml";
+
+
+}
+
+
+@using (Html.BeginForm("DeliveryAbort", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(c=>c.id)
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header">
+                        <h3 class="text-center font-weight-light my-1">
+                            Please State your Reason for Cancelling this Delivery
+
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3 ">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3 mb-md-0">
+                                    @Html.TextAreaFor(c => c.Reason, new { @cols = 80 })
+                                    @Html.ValidationMessageFor(c => c.Reason, "", new { @class = "text-danger" })
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid">
+                            <input type="submit" value="Abort" class="btn btn-danger btn-block" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

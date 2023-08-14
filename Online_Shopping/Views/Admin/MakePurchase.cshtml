@@ -1,0 +1,111 @@
+﻿
+@model Online_Shopping.Resources.PurchaseResource
+@{
+    ViewBag.Title = "MakePurchase";
+    Layout = "~/Views/Shared/_LayoutList.cshtml";
+
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid px-5">
+
+        <br />
+        <div class="page-header">
+            <div class="page-title">
+                <h4>Add Purchase </h4>
+                <h6>Add/Update Purchase</h6>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Supplier Name</label>
+                            <div class="row">
+                                <div class="col-lg-10 col-sm-10 col-10">
+
+                                    @Html.DropDownListFor(model => model.SupplierID, new SelectList(ViewBag.supplier, "Id", "Name"), "Select Supplier", new { @class = "form-control" })
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Purchase Date </label>
+                            <div class="input-groupicon">
+                                @Html.EditorFor(model => model.PurchaseDate)
+                                @Html.ValidationMessageFor(model => model.PurchaseDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <br />
+
+                <div class="row">
+
+                    <div class="table-responsive">
+                        <table class="table datanew">
+                            <thead>
+                                <tr>
+                                    
+                                    <th>Product </th>
+                                    <th>Supplier</th>
+                                    <th> Quantity</th>
+                                    <th> Price</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.PurchasedProductResources.Count; i++)
+                                {
+                                    <tr>
+                                        @Html.HiddenFor(model => Model.PurchasedProductResources[i].Name)
+                                        @Html.HiddenFor(model => Model.PurchasedProductResources[i].ProductID)
+                                        @Html.HiddenFor(model => Model.PurchasedProductResources[i].Supplier_Name)
+
+
+                                       
+
+                                        <td>@Html.DisplayFor(model => Model.PurchasedProductResources[i].Name)</td>
+                                        <td>@Html.DisplayFor(model => Model.PurchasedProductResources[i].Supplier_Name)</td>
+
+                                        <td>
+                                            @Html.EditorFor(model => Model.PurchasedProductResources[i].Quantity, new { htmlAttributes = new { type = "number", min = "0", disableUpDown = "true" } })
+                                        </td>
+
+
+                                        <td>@Html.EditorFor(model => Model.PurchasedProductResources[i].Price)</td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="col-lg-12">
+                        <input type="submit" value="Submit" class="btn btn-primary">
+
+
+                        <a href="@Url.Action("DashBoard", "Admin")" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+}
+
+

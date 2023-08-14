@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "DashBoard";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Dashboard</h1>
+    <ol class="breadcrumb mb-4">
+    </ol>
+    <div class="row">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4" style="align-items:center">
+                <div style="font-size:30px;padding-left:10px">
+                    @ViewBag.highpurchasecount
+                </div>
+                <div class="card-body">Highly Purchased Products</div>
+
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="@Url.Action("Highlypurchased","Admin")">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-white mb-4" style="align-items:center">
+                <div style="font-size:30px;padding-left:10px">
+                    @ViewBag.lowpurchasecount
+                </div>
+                <div class="card-body">Least Purchased Products</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="@Url.Action("LowPurchase","Admin")">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white mb-4" style="align-items:center">
+                <div style="font-size:30px;padding-left:10px">
+                    @ViewBag.sales
+                </div>
+                <div class="card-body">Sales : ₦ @ViewBag.salesum</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="@Url.Action("SalesReport","Admin")">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-secondary text-white mb-4" style="align-items:center">
+                <div style="font-size:30px;padding-left:10px">
+                    @ViewBag.purchase
+                </div>
+                <div class="card-body">Purchases: ₦ @ViewBag.purchsum</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="@Url.Action("PurchaseList","Admin")">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-danger text-white mb-4" style="align-items:center">
+                <div style="font-size:30px;padding-left:10px">
+                    @ViewBag.outofstock
+                </div>
+                <div class="card-body">Out of Stock Products</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="@Url.Action("Outofstock","Admin")">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+@if (ViewBag.message != null)
+{
+    <div class="alert alert-success justify-content-lg-end" role="alert" id="#messageAlert">
+        @ViewBag.message
+
+    </div>
+}
+@if (ViewBag.error != null)
+{
+    <div class="alert alert-danger justify-content-lg-end" role="alert" id="#messageAlert">
+        @ViewBag.error
+
+    </div>
+}
+

@@ -1,0 +1,70 @@
+﻿
+@model Online_Shopping.Models.Supplier
+@{
+    ViewBag.Title = "EditSupplier";
+    Layout = "~/Views/Shared/_LayoutList.cshtml";
+
+}
+
+
+<div class="container-fluid px-5">
+    <br />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <!-- Modal content goes here -->
+        <div class="modal-dialog modal-lg ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Supplier</h5>
+                </div>
+                <br />
+                <div class="modal-body">
+
+                    <div class="container">
+
+                        <div class="card-body ">
+                            <div class="row ">
+                                <div class="col-lg-3 col-sm-6 col-12">
+
+                                    Name: @Html.EditorFor(c => c.Name)
+                                    @Html.ValidationMessageFor(c => c.Name, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="col-lg-3 col-sm-6 col-12">
+
+                                    Email: @Html.EditorFor(c => c.Email)
+                                    @Html.ValidationMessageFor(c => c.Email, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="col-lg-3 col-sm-6 col-12">
+
+                                    Phone: @Html.EditorFor(c => c.Phone)
+                                    @Html.ValidationMessageFor(c => c.Phone, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="col-lg-3 col-sm-6 col-12">
+
+                                    Address: @Html.TextAreaFor(c => c.Address)
+                                    @Html.ValidationMessageFor(c => c.Address, "", new { @class = "text-danger" })
+
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="modal-footer justify-content-center">
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

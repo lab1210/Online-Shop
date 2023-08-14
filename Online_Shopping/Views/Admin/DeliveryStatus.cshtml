@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "DeliveryStatus";
+    Layout = "~/Views/Shared/_LayoutList.cshtml";
+
+}
+
+
+<div class="container-fluid px-5">
+    <br />
+
+    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+        <i class="bi-cart-fill" style="font-size: 30px; margin-right: 10px;"></i>
+        <h4 style="margin: 0;">Delivery Status</h4>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+
+            @foreach (var item in ViewBag.Complete)
+            {
+                <div class="card mb-3">
+                    <div class="row g-0">
+
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Driver: @item.Driver</h5>
+                                <p class="card-text">Date: @item.SaleDate.ToShortDateString()</p>
+                                <p class="card-text">Address: @item.Address</p>
+                                <p class="card-text">Customer: @item.name</p>
+                                <p class="card-text">Status: <span class="text-success">Completed</span></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @foreach (var item in ViewBag.Cancelled)
+            {
+                <div class="card mb-3">
+                    <div class="row g-0">
+
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Driver: @item.name</h5>
+                                <p class="card-text">Date: @item.SaleDate.ToShortDateString()</p>
+                                <p class="card-text">Address: @item.Address</p>
+                                <p class="card-text">Customer: @item.Customer</p>
+
+                                <p class="card-text">Status:<span class="text-danger">   Cancelled</span></p>
+                                <p class="card-text">Reason:<span class="text-danger"> @item.Reason</span></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
+    </div>
+</div>

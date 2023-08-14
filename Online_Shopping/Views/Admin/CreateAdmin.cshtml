@@ -1,0 +1,80 @@
+﻿@model Online_Shopping.Models.Register
+
+@{
+    ViewBag.Title = "CreateAdmin";
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Admin</h3></div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3 mb-md-0">
+                                        @Html.EditorFor(c => c.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your first name" } })
+                                        <label>First name</label>
+                                        @Html.ValidationMessageFor(c => c.FirstName)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        @Html.EditorFor(c => c.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your Last name" } })
+                                        <label>Last name</label>
+                                        @Html.ValidationMessageFor(c => c.LastName)
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                @Html.EditorFor(c => c.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "name@example.com" } })
+                                <label>Email address</label>
+                                @Html.ValidationMessageFor(c => c.Email)
+
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3 mb-md-0" style="display:flex">
+                                        <input type="password" id="password-input" name="Password" placeholder="Create a password" class="form-control" />
+                                        <span onclick="togglePasswordVisibility()" class="fa toggle-password  fa-eye-slash " id="toggle-icon" style="padding-top:30px"></span><br />
+
+                                        <label>Password</label>
+                                        @Html.ValidationMessageFor(c => c.Password)
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3 mb-md-0" style="display:flex">
+                                        <input type="password" id="confirmpassword-input" name="ConfirmPassword" placeholder="Confirm password" class="form-control" />
+
+                                        <label>Confirm Password</label>
+                                        <span onclick="toggleconfirmPasswordVisibility()" class="fa toggle-password  fa-eye-slash " id="toggle-icon-confirm" style="padding-top:30px"></span><br />
+                                        @Html.ValidationMessageFor(c => c.Password)
+
+                                    </div>
+                                </div>
+                                @Html.ValidationSummary()
+                            </div>
+                            <div class="mt-4 mb-0">
+
+                                <div class="d-grid">
+                                    <input type="submit" value="Sign Up" class="btn btn-primary btn-block" />
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+}

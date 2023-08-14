@@ -1,0 +1,35 @@
+﻿
+@model Online_Shopping.Models.Category
+@using (Html.BeginForm("AddCategory","Admin",FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal" id="Mymodal" tabindex="-1">
+        <!-- Modal content goes here -->
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="container">
+
+                        <div class="card-body ">
+                            <form>
+                                <div class="form-control">
+                                    Category Name: @Html.EditorFor(c=>c.Name)
+                                    @Html.ValidationMessageFor(c=>c.Name)
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </div>
+            </div>
+        </div>
+    </div>
+}

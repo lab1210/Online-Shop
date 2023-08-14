@@ -1,0 +1,61 @@
+﻿
+
+@model Online_Shopping.Models.Supplier
+@using (Html.BeginForm("AddSupplier", "Admin", FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal" id="Mysuppliermodal" tabindex="-1">
+        <!-- Modal content goes here -->
+        <div class="modal-dialog modal-lg ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Supplier</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="container">
+
+                        <div class="card-body ">
+                            <div class="row ">
+                                <form>
+                                    <div class="col-lg-3 col-sm-6 col-12">
+
+                                        Name: @Html.EditorFor(c => c.Name)
+                                        @Html.ValidationMessageFor(c => c.Name)
+
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6 col-12">
+
+                                        Email: @Html.EditorFor(c => c.Email)
+                                        @Html.ValidationMessageFor(c => c.Email)
+
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6 col-12">
+
+                                        Phone: @Html.EditorFor(c => c.Phone)
+                                        @Html.ValidationMessageFor(c => c.Phone)
+
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6 col-12">
+
+                                        Address: @Html.TextAreaFor(c => c.Address)
+                                        @Html.ValidationMessageFor(c => c.Address)
+
+                                    </div>
+
+
+                            </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Online_Shopping.Models.OnRoute>
+
+@{
+    ViewBag.Title = "VerifySales";
+    Layout = "~/Views/Shared/_LayoutDriver.cshtml";
+
+}
+
+
+<div class="container-fluid px-5">
+
+    <br />
+    <div class="page-header">
+        <div class="page-title">
+            <i class="fas fa-table me-1"></i>
+
+            <h4>Route List</h4>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+
+
+            <div class="table-responsive">
+                <table class="table datanew ">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th></th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(c => item.name)</td>
+
+                                <td>@Html.DisplayFor(c => item.Address)</td>
+
+                                <td>
+                                    <a class="me-3" href="@Url.Action("Verify", "Admin", new {id=item.id})" onclick="return confirm('Are you sure you want to Verify this Sale?')" ;>
+                                        <img src="~/Content/icons/cash.svg" alt="img">
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <a class="me-3" href="@Url.Action("DeliveryAbort", "Admin", new {id=item.id})" >
+                                        <img src="~/Content/icons/delete-2.svg" alt="img">
+                                    </a>
+                                </td>
+
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @if (ViewBag.message != null)
+                    {
+                        <div class="alert alert-success justify-content-lg-end" role="alert" id="#messageAlert">
+                            @ViewBag.message
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+

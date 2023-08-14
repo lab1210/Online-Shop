@@ -1,0 +1,803 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5F5B7856-E742-40EF-9524-42A8EA1C95A3}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Online_Shopping</RootNamespace>
+    <AssemblyName>Online_Shopping</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44357</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.2.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=4.1.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.4.1.0\lib\net47\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MimeKit, Version=4.1.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.4.1.0\lib\net47\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Formats.Asn1, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Formats.Asn1.7.0.0\lib\net462\System.Formats.Asn1.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Abstractions.5.11.1\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Container.5.11.1\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mvc, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Mvc.5.11.1\lib\net47\Unity.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mvc5, Version=1.4.0.0, Culture=neutral, PublicKeyToken=43da31bc42a85347, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Mvc5.1.4.0\lib\net45\Unity.Mvc5.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="IService\ICategoryService.cs" />
+    <Compile Include="IService\ILoginService.cs" />
+    <Compile Include="IService\IProductService.cs" />
+    <Compile Include="IService\IPurchaseService.cs" />
+    <Compile Include="IService\IRegisterService.cs" />
+    <Compile Include="IService\ICartService.cs" />
+    <Compile Include="IService\ISupplierService.cs" />
+    <Compile Include="Migrations\202307201107317_Login.cs" />
+    <Compile Include="Migrations\202307201107317_Login.designer.cs">
+      <DependentUpon>202307201107317_Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307201110087_Add date to login.cs" />
+    <Compile Include="Migrations\202307201110087_Add date to login.designer.cs">
+      <DependentUpon>202307201110087_Add date to login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307201204182_remove reg.cs" />
+    <Compile Include="Migrations\202307201204182_remove reg.designer.cs">
+      <DependentUpon>202307201204182_remove reg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307201205289_registration.cs" />
+    <Compile Include="Migrations\202307201205289_registration.designer.cs">
+      <DependentUpon>202307201205289_registration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307241027381_Category Model.cs" />
+    <Compile Include="Migrations\202307241027381_Category Model.designer.cs">
+      <DependentUpon>202307241027381_Category Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307241414187_Supplier model.cs" />
+    <Compile Include="Migrations\202307241414187_Supplier model.designer.cs">
+      <DependentUpon>202307241414187_Supplier model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307241942416_add code to category.cs" />
+    <Compile Include="Migrations\202307241942416_add code to category.designer.cs">
+      <DependentUpon>202307241942416_add code to category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307242205386_Product Model.cs" />
+    <Compile Include="Migrations\202307242205386_Product Model.designer.cs">
+      <DependentUpon>202307242205386_Product Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307242208251_Product Model with supplier.cs" />
+    <Compile Include="Migrations\202307242208251_Product Model with supplier.designer.cs">
+      <DependentUpon>202307242208251_Product Model with supplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307250938502_Add slug to product.cs" />
+    <Compile Include="Migrations\202307250938502_Add slug to product.designer.cs">
+      <DependentUpon>202307250938502_Add slug to product.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307261010232_Purchase Model.cs" />
+    <Compile Include="Migrations\202307261010232_Purchase Model.designer.cs">
+      <DependentUpon>202307261010232_Purchase Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307262125298_report.cs" />
+    <Compile Include="Migrations\202307262125298_report.designer.cs">
+      <DependentUpon>202307262125298_report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307262131475_report with image.cs" />
+    <Compile Include="Migrations\202307262131475_report with image.designer.cs">
+      <DependentUpon>202307262131475_report with image.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307262303166_product with description.cs" />
+    <Compile Include="Migrations\202307262303166_product with description.designer.cs">
+      <DependentUpon>202307262303166_product with description.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307271013488_Sale Model.cs" />
+    <Compile Include="Migrations\202307271013488_Sale Model.designer.cs">
+      <DependentUpon>202307271013488_Sale Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307271021069_cart Model.cs" />
+    <Compile Include="Migrations\202307271021069_cart Model.designer.cs">
+      <DependentUpon>202307271021069_cart Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307271045533_cart Model with image.cs" />
+    <Compile Include="Migrations\202307271045533_cart Model with image.designer.cs">
+      <DependentUpon>202307271045533_cart Model with image.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307271125119_cart Model with user.cs" />
+    <Compile Include="Migrations\202307271125119_cart Model with user.designer.cs">
+      <DependentUpon>202307271125119_cart Model with user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307271156184_cart Model updated.cs" />
+    <Compile Include="Migrations\202307271156184_cart Model updated.designer.cs">
+      <DependentUpon>202307271156184_cart Model updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307271440450_sale Model updated.cs" />
+    <Compile Include="Migrations\202307271440450_sale Model updated.designer.cs">
+      <DependentUpon>202307271440450_sale Model updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307271457354_sale Model add user.cs" />
+    <Compile Include="Migrations\202307271457354_sale Model add user.designer.cs">
+      <DependentUpon>202307271457354_sale Model add user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307301858094_Change in SalesModel.cs" />
+    <Compile Include="Migrations\202307301858094_Change in SalesModel.designer.cs">
+      <DependentUpon>202307301858094_Change in SalesModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307302106435_add quantiy to SalesModel.cs" />
+    <Compile Include="Migrations\202307302106435_add quantiy to SalesModel.designer.cs">
+      <DependentUpon>202307302106435_add quantiy to SalesModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307302129401_add quantiy to product.cs" />
+    <Compile Include="Migrations\202307302129401_add quantiy to product.designer.cs">
+      <DependentUpon>202307302129401_add quantiy to product.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307302138255_remove quantiy from product.cs" />
+    <Compile Include="Migrations\202307302138255_remove quantiy from product.designer.cs">
+      <DependentUpon>202307302138255_remove quantiy from product.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307302149425_add slug to report.cs" />
+    <Compile Include="Migrations\202307302149425_add slug to report.designer.cs">
+      <DependentUpon>202307302149425_add slug to report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307302242390_add onroutemodel.cs" />
+    <Compile Include="Migrations\202307302242390_add onroutemodel.designer.cs">
+      <DependentUpon>202307302242390_add onroutemodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307302341073_add verify.cs" />
+    <Compile Include="Migrations\202307302341073_add verify.designer.cs">
+      <DependentUpon>202307302341073_add verify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307311024311_updates in salesmodel.cs" />
+    <Compile Include="Migrations\202307311024311_updates in salesmodel.designer.cs">
+      <DependentUpon>202307311024311_updates in salesmodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307311418041_add supplier to purchaseproduct.cs" />
+    <Compile Include="Migrations\202307311418041_add supplier to purchaseproduct.designer.cs">
+      <DependentUpon>202307311418041_add supplier to purchaseproduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308010925286_Add Salecode to onroute and verified sale.cs" />
+    <Compile Include="Migrations\202308010925286_Add Salecode to onroute and verified sale.designer.cs">
+      <DependentUpon>202308010925286_Add Salecode to onroute and verified sale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308010952039_Add stock to product.cs" />
+    <Compile Include="Migrations\202308010952039_Add stock to product.designer.cs">
+      <DependentUpon>202308010952039_Add stock to product.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308021001527_Add total to cart.cs" />
+    <Compile Include="Migrations\202308021001527_Add total to cart.designer.cs">
+      <DependentUpon>202308021001527_Add total to cart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308021132549_Add list of cart to sale.cs" />
+    <Compile Include="Migrations\202308021132549_Add list of cart to sale.designer.cs">
+      <DependentUpon>202308021132549_Add list of cart to sale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308021143534_remove list of cart from sale.cs" />
+    <Compile Include="Migrations\202308021143534_remove list of cart from sale.designer.cs">
+      <DependentUpon>202308021143534_remove list of cart from sale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308031038197_Sales-View-Model.cs" />
+    <Compile Include="Migrations\202308031038197_Sales-View-Model.designer.cs">
+      <DependentUpon>202308031038197_Sales-View-Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308031042344_Sales-info.cs" />
+    <Compile Include="Migrations\202308031042344_Sales-info.designer.cs">
+      <DependentUpon>202308031042344_Sales-info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308031043511_update Sales-info.cs" />
+    <Compile Include="Migrations\202308031043511_update Sales-info.designer.cs">
+      <DependentUpon>202308031043511_update Sales-info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308031058378_remove name from Sales-info.cs" />
+    <Compile Include="Migrations\202308031058378_remove name from Sales-info.designer.cs">
+      <DependentUpon>202308031058378_remove name from Sales-info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308031132152_add salecode to Sales-info.cs" />
+    <Compile Include="Migrations\202308031132152_add salecode to Sales-info.designer.cs">
+      <DependentUpon>202308031132152_add salecode to Sales-info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308031138307_remove salecode from Sales-info.cs" />
+    <Compile Include="Migrations\202308031138307_remove salecode from Sales-info.designer.cs">
+      <DependentUpon>202308031138307_remove salecode from Sales-info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308031243253_add date to Sales-info.cs" />
+    <Compile Include="Migrations\202308031243253_add date to Sales-info.designer.cs">
+      <DependentUpon>202308031243253_add date to Sales-info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308061721324_date to sales.cs" />
+    <Compile Include="Migrations\202308061721324_date to sales.designer.cs">
+      <DependentUpon>202308061721324_date to sales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308070842352_Aborted Delivery.cs" />
+    <Compile Include="Migrations\202308070842352_Aborted Delivery.designer.cs">
+      <DependentUpon>202308070842352_Aborted Delivery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308070919211_Aborted Delivery update.cs" />
+    <Compile Include="Migrations\202308070919211_Aborted Delivery update.designer.cs">
+      <DependentUpon>202308070919211_Aborted Delivery update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308071011399_Aborted Delivery add address.cs" />
+    <Compile Include="Migrations\202308071011399_Aborted Delivery add address.designer.cs">
+      <DependentUpon>202308071011399_Aborted Delivery add address.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308071014072_Aborted Delivery add customer.cs" />
+    <Compile Include="Migrations\202308071014072_Aborted Delivery add customer.designer.cs">
+      <DependentUpon>202308071014072_Aborted Delivery add customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Purchase.cs" />
+    <Compile Include="Models\Register.cs" />
+    <Compile Include="Models\Sale.cs" />
+    <Compile Include="Models\ShoppingContext.cs" />
+    <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\ProductResource.cs" />
+    <Compile Include="Resources\PurchaseResource.cs" />
+    <Compile Include="Service\CategoryService.cs" />
+    <Compile Include="Service\EmailService.cs" />
+    <Compile Include="Service\LoginService.cs" />
+    <Compile Include="Service\ProductService.cs" />
+    <Compile Include="Service\PurchaseService.cs" />
+    <Compile Include="Service\RegisterService.cs" />
+    <Compile Include="Service\CartService.cs" />
+    <Compile Include="Service\SupplierService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\assets\favicon.ico" />
+    <Content Include="Content\assets\icons8-admin-48.png" />
+    <Content Include="Content\assets\vivi.png" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\css\navbar.css" />
+    <Content Include="Content\css\styles.css" />
+    <Content Include="Content\css\tables.css" />
+    <Content Include="Content\icons\barcode1.png" />
+    <Content Include="Content\icons\calendars.svg" />
+    <Content Include="Content\icons\cash.svg" />
+    <Content Include="Content\icons\close-circle.svg" />
+    <Content Include="Content\icons\close-circle1.svg" />
+    <Content Include="Content\icons\closes.svg" />
+    <Content Include="Content\icons\dash1.svg" />
+    <Content Include="Content\icons\dash2.svg" />
+    <Content Include="Content\icons\dash3.svg" />
+    <Content Include="Content\icons\dash4.svg" />
+    <Content Include="Content\icons\dashboard.svg" />
+    <Content Include="Content\icons\datepicker.svg" />
+    <Content Include="Content\icons\debitcard.svg" />
+    <Content Include="Content\icons\delete-2.svg" />
+    <Content Include="Content\icons\delete.svg" />
+    <Content Include="Content\icons\delete1.svg" />
+    <Content Include="Content\icons\dollar-square.svg" />
+    <Content Include="Content\icons\dollar.svg" />
+    <Content Include="Content\icons\download.svg" />
+    <Content Include="Content\icons\dropdown.svg" />
+    <Content Include="Content\icons\edit-5.svg" />
+    <Content Include="Content\icons\edit-6.svg" />
+    <Content Include="Content\icons\edit-set.svg" />
+    <Content Include="Content\icons\edit.svg" />
+    <Content Include="Content\icons\ellipise1.svg" />
+    <Content Include="Content\icons\excel.svg" />
+    <Content Include="Content\icons\expense1.svg" />
+    <Content Include="Content\icons\eye.svg" />
+    <Content Include="Content\icons\eye1.svg" />
+    <Content Include="Content\icons\facebook.png" />
+    <Content Include="Content\icons\filter.svg" />
+    <Content Include="Content\icons\google.png" />
+    <Content Include="Content\icons\heart.svg" />
+    <Content Include="Content\icons\log-out.svg" />
+    <Content Include="Content\icons\macbook.svg" />
+    <Content Include="Content\icons\mail.svg" />
+    <Content Include="Content\icons\minus.svg" />
+    <Content Include="Content\icons\notification-bing.svg" />
+    <Content Include="Content\icons\pause1.svg" />
+    <Content Include="Content\icons\pdf.svg" />
+    <Content Include="Content\icons\places.svg" />
+    <Content Include="Content\icons\plus-circle.svg" />
+    <Content Include="Content\icons\plus.svg" />
+    <Content Include="Content\icons\plus1.svg" />
+    <Content Include="Content\icons\printer.svg" />
+    <Content Include="Content\icons\product.svg" />
+    <Content Include="Content\icons\purchase1.svg" />
+    <Content Include="Content\icons\quotation1.svg" />
+    <Content Include="Content\icons\return1.svg" />
+    <Content Include="Content\icons\reverse.svg" />
+    <Content Include="Content\icons\sales1.svg" />
+    <Content Include="Content\icons\scan.svg" />
+    <Content Include="Content\icons\scanner.svg" />
+    <Content Include="Content\icons\scanner1.svg" />
+    <Content Include="Content\icons\scanners.svg" />
+    <Content Include="Content\icons\search-white.svg" />
+    <Content Include="Content\icons\search-whites.svg" />
+    <Content Include="Content\icons\search.svg" />
+    <Content Include="Content\icons\settings.svg" />
+    <Content Include="Content\icons\time.svg" />
+    <Content Include="Content\icons\transcation.svg" />
+    <Content Include="Content\icons\transfer1.svg" />
+    <Content Include="Content\icons\trash12.svg" />
+    <Content Include="Content\icons\upload.svg" />
+    <Content Include="Content\icons\users1.svg" />
+    <Content Include="Content\icons\wallet1.svg" />
+    <Content Include="Scripts\js\chart-area-demo.js" />
+    <Content Include="Scripts\js\chart-bar-demo.js" />
+    <Content Include="Scripts\js\chart-pie-demo.js" />
+    <Content Include="Scripts\js\datatables-demo.js" />
+    <Content Include="Scripts\js\datatables-simple-demo.js" />
+    <Content Include="Scripts\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\js\FadeOut.js" />
+    <Content Include="Scripts\js\feather.min.js" />
+    <Content Include="Scripts\js\Fontawesome.js" />
+    <Content Include="Scripts\js\heart.js" />
+    <Content Include="Scripts\js\jquery.dataTables.min.js" />
+    <Content Include="Scripts\js\Password.js" />
+    <Content Include="Scripts\js\script.js" />
+    <Content Include="Scripts\js\scripts.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\table.js" />
+    <Content Include="Scripts\js\togglescripts.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Item_Details.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_LayoutDetails.cshtml" />
+    <Content Include="Views\Auth\LoginPage.cshtml" />
+    <Content Include="Views\Auth\RegistrationPage.cshtml" />
+    <Content Include="Views\Shared\_LayoutAuth.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_SideNav.cshtml" />
+    <Content Include="Views\Admin\DashBoard.cshtml" />
+    <Content Include="Views\Shared\_AdminHeader.cshtml" />
+    <Content Include="Scripts\js\fontawesome.com.js" />
+    <Content Include="Views\Admin\CategoryList.cshtml" />
+    <Content Include="Views\Admin\ProductList.cshtml" />
+    <Content Include="Views\Admin\SupplierList.cshtml" />
+    <Content Include="Views\Admin\SalesReport.cshtml" />
+    <Content Include="Views\Admin\CreateAdmin.cshtml" />
+    <Content Include="Views\Shared\_AddCategory.cshtml" />
+    <Content Include="Views\Shared\_AddSupplier.cshtml" />
+    <Content Include="Views\Shared\_AddProduct.cshtml" />
+    <Content Include="Views\Shared\_LayoutList.cshtml" />
+    <Content Include="Views\Admin\EditProduct.cshtml" />
+    <Content Include="Views\Admin\EditSupplier.cshtml" />
+    <Content Include="Views\Admin\MakePurchase.cshtml" />
+    <Content Include="Views\Admin\PurchaseList.cshtml" />
+    <Content Include="Views\Admin\PurchasedProducts.cshtml" />
+    <Content Include="Views\Shared\_PurchaseList.cshtml" />
+    <Content Include="Views\Admin\Inventory.cshtml" />
+    <Content Include="Views\Admin\Outofstock.cshtml" />
+    <Content Include="Views\Home\ShoppingCart.cshtml" />
+    <Content Include="Views\Home\Buy.cshtml" />
+    <Content Include="Views\Admin\AddCourier.cshtml" />
+    <Content Include="Views\Admin\ChooseClient.cshtml" />
+    <Content Include="Views\Shared\_LayoutDriver.cshtml" />
+    <Content Include="Views\Shared\_DriverHeader.cshtml" />
+    <Content Include="Views\Admin\VerifySales.cshtml" />
+    <Content Include="Views\Admin\Highlypurchased.cshtml" />
+    <Content Include="Views\Admin\LowPurchase.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Shared\_LayoutSearch.cshtml" />
+    <Content Include="Views\Shared\_PartialSearch.cshtml" />
+    <Content Include="Views\Admin\DeliveryAbort.cshtml" />
+    <Content Include="Views\Admin\AdminList.cshtml" />
+    <Content Include="Views\Admin\DriverList.cshtml" />
+    <Content Include="Views\Admin\DeliveryStatus.cshtml" />
+    <Content Include="Views\Shared\_LayoutCart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="ProductUploads\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202307201107317_Login.resx">
+      <DependentUpon>202307201107317_Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307201110087_Add date to login.resx">
+      <DependentUpon>202307201110087_Add date to login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307201204182_remove reg.resx">
+      <DependentUpon>202307201204182_remove reg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307201205289_registration.resx">
+      <DependentUpon>202307201205289_registration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307241027381_Category Model.resx">
+      <DependentUpon>202307241027381_Category Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307241414187_Supplier model.resx">
+      <DependentUpon>202307241414187_Supplier model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307241942416_add code to category.resx">
+      <DependentUpon>202307241942416_add code to category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307242205386_Product Model.resx">
+      <DependentUpon>202307242205386_Product Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307242208251_Product Model with supplier.resx">
+      <DependentUpon>202307242208251_Product Model with supplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307250938502_Add slug to product.resx">
+      <DependentUpon>202307250938502_Add slug to product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307261010232_Purchase Model.resx">
+      <DependentUpon>202307261010232_Purchase Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307262125298_report.resx">
+      <DependentUpon>202307262125298_report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307262131475_report with image.resx">
+      <DependentUpon>202307262131475_report with image.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307262303166_product with description.resx">
+      <DependentUpon>202307262303166_product with description.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307271013488_Sale Model.resx">
+      <DependentUpon>202307271013488_Sale Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307271021069_cart Model.resx">
+      <DependentUpon>202307271021069_cart Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307271045533_cart Model with image.resx">
+      <DependentUpon>202307271045533_cart Model with image.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307271125119_cart Model with user.resx">
+      <DependentUpon>202307271125119_cart Model with user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307271156184_cart Model updated.resx">
+      <DependentUpon>202307271156184_cart Model updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307271440450_sale Model updated.resx">
+      <DependentUpon>202307271440450_sale Model updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307271457354_sale Model add user.resx">
+      <DependentUpon>202307271457354_sale Model add user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307301858094_Change in SalesModel.resx">
+      <DependentUpon>202307301858094_Change in SalesModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307302106435_add quantiy to SalesModel.resx">
+      <DependentUpon>202307302106435_add quantiy to SalesModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307302129401_add quantiy to product.resx">
+      <DependentUpon>202307302129401_add quantiy to product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307302138255_remove quantiy from product.resx">
+      <DependentUpon>202307302138255_remove quantiy from product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307302149425_add slug to report.resx">
+      <DependentUpon>202307302149425_add slug to report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307302242390_add onroutemodel.resx">
+      <DependentUpon>202307302242390_add onroutemodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307302341073_add verify.resx">
+      <DependentUpon>202307302341073_add verify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307311024311_updates in salesmodel.resx">
+      <DependentUpon>202307311024311_updates in salesmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307311418041_add supplier to purchaseproduct.resx">
+      <DependentUpon>202307311418041_add supplier to purchaseproduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308010925286_Add Salecode to onroute and verified sale.resx">
+      <DependentUpon>202308010925286_Add Salecode to onroute and verified sale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308010952039_Add stock to product.resx">
+      <DependentUpon>202308010952039_Add stock to product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308021001527_Add total to cart.resx">
+      <DependentUpon>202308021001527_Add total to cart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308021132549_Add list of cart to sale.resx">
+      <DependentUpon>202308021132549_Add list of cart to sale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308021143534_remove list of cart from sale.resx">
+      <DependentUpon>202308021143534_remove list of cart from sale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308031038197_Sales-View-Model.resx">
+      <DependentUpon>202308031038197_Sales-View-Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308031042344_Sales-info.resx">
+      <DependentUpon>202308031042344_Sales-info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308031043511_update Sales-info.resx">
+      <DependentUpon>202308031043511_update Sales-info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308031058378_remove name from Sales-info.resx">
+      <DependentUpon>202308031058378_remove name from Sales-info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308031132152_add salecode to Sales-info.resx">
+      <DependentUpon>202308031132152_add salecode to Sales-info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308031138307_remove salecode from Sales-info.resx">
+      <DependentUpon>202308031138307_remove salecode from Sales-info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308031243253_add date to Sales-info.resx">
+      <DependentUpon>202308031243253_add date to Sales-info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308061721324_date to sales.resx">
+      <DependentUpon>202308061721324_date to sales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308070842352_Aborted Delivery.resx">
+      <DependentUpon>202308070842352_Aborted Delivery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308070919211_Aborted Delivery update.resx">
+      <DependentUpon>202308070919211_Aborted Delivery update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308071011399_Aborted Delivery add address.resx">
+      <DependentUpon>202308071011399_Aborted Delivery add address.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308071014072_Aborted Delivery add customer.resx">
+      <DependentUpon>202308071014072_Aborted Delivery add customer.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>54585</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44357/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

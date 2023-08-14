@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Online_Shopping.Resources.ProductResource>
+
+@{
+    ViewBag.Title = "ProductList";
+    Layout = "~/Views/Shared/_LayoutList.cshtml";
+
+}
+<div class="container-fluid px-5">
+
+    <br />
+    <div class="page-header">
+        <div class="page-title">
+            <i class="fas fa-table me-1"></i>
+
+            <h4>Product List</h4>
+            <h6>Manage your Products</h6>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+
+
+            <div class="table-responsive">
+                <table class="table datanew ">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>SKU</th>
+                            <th>Category</th>
+                            <th>Supplier</th>
+                            <th>Price</th>
+                            <th>Discount Price</th>
+                            <th>Description</th>
+
+                            <th></th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="productimgname">
+                                    <a class="product-img">
+                                        <img src=@item.imagepath alt="Image" style="height:100px;max-width:100px" />
+
+                                    </a>
+                                    <a href="javascript:void(0);"></a>
+                                </td>
+
+                                <td>@Html.DisplayFor(c => item.Name)</td>
+                                <td>@Html.DisplayFor(c => item.SKU)</td>
+                                <td>@Html.DisplayFor(c => item.Category.Name)</td>
+                                <td>@Html.DisplayFor(c => item.Supplier.Name)</td>
+                                <td>@Html.DisplayFor(c => item.price)</td>
+                                @if (item.Discount_Price == null)
+                                {
+                                    <td>None</td>
+                                }
+                                else
+                                {
+                                    <td>@Html.DisplayFor(c => item.Discount_Price)</td>
+                                }
+
+                                @Html.HiddenFor(c => item.slug)
+                                <td>@Html.DisplayFor(c => item.description)</td>
+
+                                <td>
+                                    <a class="me-3" href="@Url.Action("EditProduct", "Admin", new {slug=item.slug})">
+                                        <img src="~/Content/icons/edit.svg" alt="img">
+                                    </a>
+
+
+                                </td>
+                                <td>
+                                    <a class="me-3" href="@Url.Action("DeleteProduct", "Admin", new { slug=item.slug })" onclick="return confirm('Are you sure you want to delete this?')" ;>
+                                        <img src="~/Content/icons/delete.svg" alt="img">
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

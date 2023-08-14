@@ -1,0 +1,71 @@
+﻿
+
+@model IEnumerable<Online_Shopping.Models.Cart>
+@{
+    ViewBag.Title = "ShoppingCart";
+    Layout = "~/Views/Shared/_LayoutCart.cshtml";
+}
+
+<div class="container-fluid px-5">
+    <br />
+
+    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+        <i class="bi-cart-fill" style="font-size: 30px; margin-right: 10px;"></i>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+
+            @if (ViewBag.Message != null)
+            {
+                <div class="alert alert-success justify-content-lg-end" role="alert" id="messageAlert">
+                    @ViewBag.Message
+                </div>
+            }
+
+            @if (Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                           <img src="@item.ImagePath" alt="Image" class="img-fluid" style="max-height: 150px; border-radius: 5px; padding: 2px;" />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Html.DisplayFor(c => item.Name)</h5>
+                                    <p class="card-text">Price: ₦@Html.DisplayFor(c => item.Price)</p>
+                                    <p class="card-text">Quantity: @Html.DisplayFor(c => item.Quantity)</p>
+                                    <p class="card-text">Total: ₦@Html.DisplayFor(c => item.Total)</p>
+                                    <a href="@Url.Action("DeleteFromCart", "Home", new { id = item.Id })" onclick="return confirm('Are you sure you want to remove @item.Name from your cart?')"; class="btn btn-danger">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="text-center">Your cart is empty.</div>
+            }
+
+            @if (ViewBag.Username != null && ViewBag.count != 0)
+            {
+                <div class="row mt-4">
+                    <div class="col-lg-6 offset-lg-3">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h5 class="mb-3">Total Amount:</h5>
+                                <h2 class="display-4 mb-0">₦@ViewBag.Sum</h2>
+                            </div>
+                            <div class="card-footer text-center">
+                                <a class="btn btn-dark btn-lg" href="@Url.Action("AddToSales","Home")">Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

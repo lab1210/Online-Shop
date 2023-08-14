@@ -1,0 +1,95 @@
+﻿
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="@Url.Action("Index","Home")">Vivi Shopping</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="@Url.Action("Index","Home")">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="@Url.Action("Index","Home")">All Products</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        @foreach (var item in ViewBag.Category)
+                        {
+                            <li><a class="dropdown-item" href="@Url.Action("ProductsByCategory", "Home", new { categoryId = item.id })">@item.Name</a></li>
+                        }
+                    </ul>
+                </li>
+
+                
+
+
+
+
+            </ul>
+            <div style="gap:30px;display:flex;">
+
+
+                @if (ViewBag.Username == null)
+                {
+                    using (Html.BeginForm("Search", "Home", FormMethod.Get))
+                    {
+                        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                            <div class="input-group">
+                                @Html.TextBox("searchname", null, new { @class = "form-control", placeholder = "Search for...", })
+
+                            </div>
+                        </form>
+                    }
+                    <form class="d-flex">
+                        <a class="btn btn-outline-dark" href="@Url.Action("LoginPage", "Auth")">
+                            Login
+                        </a>
+                    </form>
+                    <form class="d-flex">
+                        <a class="btn btn-outline-light bg-black" href="@Url.Action("RegistrationPage", "Auth")">
+                            Sign Up
+                        </a>
+                    </form>
+                }
+                else
+                {
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" style="gap:20px">
+                        <li>
+                            @using (Html.BeginForm("Search", "Home", FormMethod.Get))
+                            {
+                                <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                                    <div class="input-group">
+                                        @Html.TextBox("searchname", null, new { @class = "form-control", placeholder = "Search for...", })
+
+                                    </div>
+                                </form>
+                            }
+                        </li>
+                        <li>
+                            <form class="d-flex">
+                                <a class="btn btn-outline-dark" href="@Url.Action("ShoppingCart","Home")">
+                                    <i class="bi-cart-fill me-1"></i>
+                                    Cart
+
+                                    <span class="badge bg-dark text-white ms-1 rounded-pill">@ViewBag.count</span>
+                                </a>
+                            </form>
+                        </li>
+                        <li class="nav-item dropdown">
+
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">@ViewBag.Username</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="@Url.Action("logout","Auth")">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                }
+            </div>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .navbar-brand {
+        margin-left: -50px;
+    }
+</style>

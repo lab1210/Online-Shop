@@ -1,0 +1,17 @@
+﻿#layoutSidenav {
+    display: flex;
+}
+
+#layoutSidenav_nav {
+    flex: 0 0 250px; /* Set the width of the side navigation */
+    background-color: #212529; /* Set the background color */
+}
+
+    #layoutSidenav_nav .nav-link {
+        color: grey; /* Set the text color to white */
+    }
+
+#layoutSidenav_content {
+    flex: 1; /* Allow the content to occupy the remaining space */
+    padding: 20px;
+}

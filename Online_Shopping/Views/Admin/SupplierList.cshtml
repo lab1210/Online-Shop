@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Online_Shopping.Models.Supplier>
+
+@{
+    ViewBag.Title = "SupplierList";
+    Layout = "~/Views/Shared/_LayoutList.cshtml";
+
+
+}
+
+
+
+<div class="container-fluid px-5">
+
+    <br />
+    <div class="page-header">
+        <div class="page-title">
+            <i class="fas fa-table me-1"></i>
+
+            <h4>Supplier List</h4>
+            <h6>Manage your Suppliers</h6>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+
+
+            <div class="table-responsive">
+                <table class="table datanew ">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(c => item.Name)</td>
+
+                                <td>@Html.DisplayFor(c => item.Email)</td>
+                                <td>@Html.DisplayFor(c => item.Phone)</td>
+                                <td>@Html.DisplayFor(c => item.Address)</td>
+                                <td>
+                                    <a class="me-3" href="@Url.Action("EditSupplier", "Admin", new {id=item.Id})">
+                                        <img src="~/Content/icons/edit.svg" alt="img">
+                                    </a>
+
+
+                                </td>
+
+                                <td>
+                                    <a class="me-3" href="@Url.Action("DeleteSupplier", "Admin", new {id=item.Id})" onclick="return confirm('Are you sure you want to delete this?')" ;>
+                                        <img src="~/Content/icons/delete.svg" alt="img">
+                                    </a>
+                                </td>
+                            </tr>
+
+
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

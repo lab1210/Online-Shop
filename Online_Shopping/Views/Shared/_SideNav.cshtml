@@ -1,0 +1,66 @@
+﻿<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+    <div class="sb-sidenav-menu">
+        <div class="nav">
+            <div class="sb-sidenav-menu-heading">Core</div>
+            <a class="nav-link" href="@Url.Action("DashBoard","Admin")">
+                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                Dashboard
+            </a>
+            <div class="sb-sidenav-menu-heading">Products</div>
+            <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                Category
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                <nav class="sb-sidenav-menu-nested nav">
+                    <!-- Link to trigger the modal -->
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#Mymodal">Add Category</a>
+
+
+                    <!-- Link to view category -->
+                    <a class="nav-link" href="@Url.Action("CategoryList","Admin")">View Category</a>
+                </nav>
+            </div>
+
+            <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                Product
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+
+            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                    <a class="nav-link" href="@Url.Action("DashBoard","Admin")" data-bs-toggle="modal" data-bs-target="#Myproductmodal">Add Product</a>
+
+
+                    <a class="nav-link" href="@Url.Action("ProductList","Admin")">View Products</a>
+
+                    <a class="nav-link" href="@Url.Action("DashBoard","Admin")" data-bs-toggle="modal" data-bs-target="#Mysuppliermodal">Add Supplier</a>
+
+                    <a class="nav-link" href="@Url.Action("SupplierList","Admin")">View Supplier</a>
+                    <a class="nav-link" href="@Url.Action("MakePurchase","Admin")">Make Purchase</a>
+
+
+
+
+
+
+                </nav>
+            </div>
+
+            <div class="sb-sidenav-menu-heading">Report</div>
+            <a class="nav-link" href="@Url.Action("Inventory","Admin")">
+                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                Inventory
+            </a>
+            
+
+        </div>
+    </div>
+    <div class="sb-sidenav-footer">
+        <div class="small">Logged in as:</div>
+       @ViewBag.Username
+    </div>
+</nav>
+

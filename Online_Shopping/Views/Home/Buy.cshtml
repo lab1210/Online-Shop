@@ -1,0 +1,75 @@
+﻿@model Online_Shopping.Models.SalesInfo
+@{
+    ViewBag.Title = "Buy";
+    Layout = "~/Views/Shared/_LayoutDetails.cshtml";
+
+}
+
+
+
+
+@using (Html.BeginForm("Buy", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Buy Item</h3></div>
+                    <div class="card-body">
+                        @foreach (var sale in Model.Sale)
+                        {
+                            <div class="row mb-3 " style="display:flex;font-weight:bold">
+                                <div class="col-md-6">
+                                    <label>
+                                        @Html.DisplayFor(c => sale.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        <label>
+                                            (@Html.DisplayFor(c => sale.Quantity, new { htmlAttributes = new { @class = "form-control" } }))
+
+                                        </label>
+                                    </label>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>
+                                        ₦
+                                        @Html.DisplayFor(c => sale.Price, new { htmlAttributes = new { @class = "form-control" } })
+
+                                    </label>
+                                </div>
+
+
+                            </div>
+                        }
+
+
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3 mb-md-0">
+                                    @Html.EditorFor(c => Model.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your Address" } })
+                                    <label>Address</label>
+                                    @Html.ValidationMessageFor(c => Model.Address, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3 mb-md-0">
+                                    @Html.EditorFor(c => Model.Phone, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your Phone Number" } })
+                                    <label>Phone</label>
+                                    @Html.ValidationMessageFor(c => Model.Phone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 mb-0" style="display:flex;gap:20px">
+                            <div class="d-grid">
+                                <input type="submit" value="Buy All" class="btn btn-primary btn-block" />
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Online_Shopping.Models.Sale>
+
+@{
+    ViewBag.Title = "SalesReport";
+    Layout = "~/Views/Shared/_LayoutList.cshtml";
+
+}
+
+<div class="container-fluid px-5">
+
+    <br />
+    <div class="page-header">
+        <div class="page-title">
+            <i class="fas fa-table me-1"></i>
+
+            <h4>Sales List</h4>
+            <h6>Manage your Sales</h6>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+
+
+            <div class="table-responsive">
+                <table class="table datanew ">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+
+                            <th>Customer</th>
+                            <th>Package</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(c => item.SaleDate)</td>
+
+                                <td>@Html.DisplayFor(c => item.user)</td>
+                                <td>@Html.DisplayFor(c => item.Name)</td>
+                                <td>@Html.DisplayFor(c => item.Price)</td>
+                                <td>@Html.DisplayFor(c => item.Quantity)</td>
+
+
+
+
+                            </tr>
+
+
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
