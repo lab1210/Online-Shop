@@ -1,0 +1,28 @@
+﻿@model Online_Shopping.Models.DeliveryNotification
+@{
+    ViewBag.Title = "DeliveryMail";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delivery Notification</title>
+    <!-- Include Bootstrap CSS from a CDN or your project files -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+    <div class="container" style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);">
+        <div class="card" style="border: none;">
+            <div class="card-body" style="padding: 20px;">
+                <h1 class="card-title" style="color: #3498db;">Delivery Notification</h1>
+                <p class="card-text" style="color: #666; margin-top: 15px;">Hello, you have a delivery to make to <strong>@Model.RecipientName</strong> at <strong>@Model.DeliveryAddress</strong>.</p>
+                <img class="img-fluid" src="~/Content/assets/icons8-admin-48.png" alt="Delivery Image" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); margin-top: 20px;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS and any other scripts if needed -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

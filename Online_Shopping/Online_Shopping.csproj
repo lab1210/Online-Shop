@@ -380,6 +380,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\DeliveryNotification.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Purchase.cs" />
@@ -391,7 +392,6 @@
     <Compile Include="Resources\ProductResource.cs" />
     <Compile Include="Resources\PurchaseResource.cs" />
     <Compile Include="Service\CategoryService.cs" />
-    <Compile Include="Service\EmailService.cs" />
     <Compile Include="Service\LoginService.cs" />
     <Compile Include="Service\ProductService.cs" />
     <Compile Include="Service\PurchaseService.cs" />
@@ -582,6 +582,8 @@
     <Content Include="Views\Admin\DriverList.cshtml" />
     <Content Include="Views\Admin\DeliveryStatus.cshtml" />
     <Content Include="Views\Shared\_LayoutCart.cshtml" />
+    <Content Include="Views\Admin\DeliveryMail.cshtml" />
+    <Content Include="Views\Admin\welcome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -124,7 +124,7 @@
                                         <div style="line-height:3.0em">
                                             <!-- Product name-->
                                             <div class="d-flex align-items-center">
-                                                <h5 class="fw-bolder text-uppercase "style="font-size: 18px; margin:0px;overflow:hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                                <h5 class="fw-bolder text-uppercase " style="font-size: 18px; margin:0px;overflow:hidden; text-overflow: ellipsis; white-space: nowrap;">
                                                     @product.Name
                                                 </h5>
                                                 @if (product.Discount_Price != 0)
@@ -152,6 +152,13 @@
                                             }
                                         </div>
 
+                                <div style="margin-top: -1px; margin-bottom: -30px; margin-left: -30px; margin-right: -30px;">
+                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                        <div class="d-grid gap-2">
+                                            <a class="btn btn-light mt-auto text-center" style="background-color: #212529;color:#ffffff; margin-top: auto;" href="@Url.Action("Item_Details", "Home", new { slug = product.slug, categoryid = product.CategoryID })">View Details</a>
+                                        </div>
+                                    </div>
+                                </div>
                                     </div>
 
                                 </div>
