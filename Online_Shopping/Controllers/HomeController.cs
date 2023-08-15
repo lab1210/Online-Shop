@@ -61,8 +61,10 @@ namespace Online_Shopping.Controllers
         {
             var category = categoryService.GetCategory();
             ViewBag.Category = category;
-            var Product = productService.GetAllProducts().OrderByDescending(c=>c.price);
+            var Product = productService.GetAllProducts().OrderByDescending(c => c.Discount_Price.HasValue ? c.Discount_Price : c.price);
+
             ViewBag.product = Product;
+
             return View("Index");
 
 
@@ -71,7 +73,7 @@ namespace Online_Shopping.Controllers
         {
             var category = categoryService.GetCategory();
             ViewBag.Category = category;
-            var Product = productService.GetAllProducts().OrderBy(c => c.price);
+            var Product = productService.GetAllProducts().OrderBy(c => c.Discount_Price.HasValue ? c.Discount_Price : c.price);
             ViewBag.product = Product;
             return View("Index");
         }

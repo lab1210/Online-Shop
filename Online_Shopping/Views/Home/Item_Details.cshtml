@@ -50,15 +50,29 @@
                 <p class="lead">@Model.description</p>
                 @if (ViewBag.Username == null)
                 {
-                    <div class="d-flex">
-                        <input class="form-control text-center me-3" id="inputQuantity" type="number" max=@ViewBag.InStockQuantity value="1" min="1" style="max-width: 3rem" />
-                        <a class="btn btn-outline-dark flex-shrink-0" href="@Url.Action("LoginPage","Auth")">
-                            <i class="bi-cart-fill me-1"></i>
-                            Add to cart
-                        </a>
+
+                    if (ViewBag.InStockQuantity == 0)
+                    {
+                        <div class="d-flex">
+                            <a>
+
+                                <div class="badge " style="border-radius: 50px; background-color: #CC021C; ">Sold Out</div>
+                            </a>
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="d-flex">
+                            <input class="form-control text-center me-3" id="inputQuantity" type="number" max=@ViewBag.InStockQuantity value="1" min="1" style="max-width: 3rem" />
+                            <a class="btn btn-outline-dark flex-shrink-0" href="@Url.Action("LoginPage","Auth")">
+                                <i class="bi-cart-fill me-1"></i>
+                                Add to cart
+                            </a>
 
 
-                    </div>
+                        </div>
+                    }
                 }
                 else
                 {
