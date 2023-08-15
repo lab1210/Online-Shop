@@ -1,16 +1,16 @@
-﻿using Microsoft.Ajax.Utilities;
-using Microsoft.Win32;
-using Online_Shopping.IService;
-using Online_Shopping.Models;
+﻿using Online_Shopping.Models;
 using Online_Shopping.Resources;
 using Online_Shopping.Service;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using System.Net;
+using System.Net.Mail;
+using System.Web.Services.Description;
+using System.Text;
 
 namespace Online_Shopping.Controllers
 {
@@ -18,7 +18,6 @@ namespace Online_Shopping.Controllers
     {
         private readonly CategoryService _categoryService;
         private readonly SupplierService supplierService;
-
         private readonly ProductService productService;
         private readonly PurchaseService purchaseService;
         private readonly RegisterService registerService;
@@ -26,20 +25,10 @@ namespace Online_Shopping.Controllers
         private readonly CartService cartService;
         private readonly ShoppingContext context;
 
-        private readonly EmailService _emailService;
 
-      /*  public AdminController(EmailService emailservice)
-        {
-            _emailService=emailservice;
-        }*/
-
-
-
-       
 
         public AdminController()
         {
-           /* _emailService = new EmailService();*/
             _categoryService = new CategoryService();
             supplierService = new SupplierService();
             productService = new ProductService();
@@ -331,7 +320,7 @@ namespace Online_Shopping.Controllers
         {
             return View(registerService.DriverList());
         }
-       
+
 
 
         // Purchase
@@ -382,7 +371,7 @@ namespace Online_Shopping.Controllers
             PurchaseResource purchase = purchaseService.GetPurchaseByID(id);
             return View(purchase);
         }
-        
+
         public ActionResult Outofstock()
         {
             productService.GetAllProducts();
@@ -468,9 +457,33 @@ namespace Online_Shopping.Controllers
 
                 };
 
+                var mail = HttpContext.Session["mail"] as string;
+                string to = mail;
+                string from = "oladejiomolabake14@gmail.com";
+                MailMessage mailMessage = new MailMessage(from, to);
+                var viewModel = new DeliveryNotification
+                {
+                    RecipientName = sales.user,
+                    DeliveryAddress = sales.Address
+                };
+
+
+                string mailbody = RenderViewToString("DeliveryMail", viewModel);
+
+                mailMessage.Subject = "Notification from Vivi Shopping";
+                mailMessage.Body = mailbody;
+                mailMessage.BodyEncoding = Encoding.UTF8;
+                mailMessage.IsBodyHtml = true;
+                SmtpClient client = new SmtpClient("sandbox.smtp.mailtrap.io", 2525);
+                System.Net.NetworkCredential basiccred = new
+                    System.Net.NetworkCredential("30e9235dd1ff14", "f6f5991abd4ce8");
+                client.EnableSsl = true;
+                client.Credentials = basiccred;
+                client.Send(mailMessage);
                 cartService.AddTodriverList(salesitem);
-                /*var drivermail = HttpContext.Session["mail"] as string;
-                _emailService.SendConfirmationEmail(drivermail, sales.user);*/
+
+
+                //Here>>
                 TempData["message"] = "Added";
                 return RedirectToAction("VerifySales");
             }
@@ -482,6 +495,19 @@ namespace Online_Shopping.Controllers
             return RedirectToAction("ChooseClient");
 
 
+        }
+
+        private string RenderViewToString(string viewName, object model)
+        {
+            ViewData.Model = model;
+            using (var sw = new StringWriter())
+            {
+                var viewResult = ViewEngines.Engines.FindView(ControllerContext, viewName, null);
+                var viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+                viewResult.View.Render(viewContext, sw);
+                viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
+                return sw.GetStringBuilder().ToString();
+            }
         }
         public ActionResult VerifySales()
         {
@@ -530,13 +556,13 @@ namespace Online_Shopping.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult DeliveryAbort(int id,AbortedDeleveries aborted)
+        public ActionResult DeliveryAbort(int id, AbortedDeleveries aborted)
         {
-            var remove=cartService.Getroute(id);
+            var remove = cartService.Getroute(id);
             var username = HttpContext.Session["Name"] as string;
-            aborted.name= username;
+            aborted.name = username;
             aborted.Address = remove.Address;
-            aborted.SaleDate=remove.SaleDate;
+            aborted.SaleDate = remove.SaleDate;
             aborted.Customer = remove.name;
             cartService.Deletefromroute(remove.id);
             cartService.AbortDelivery(aborted);
@@ -548,7 +574,7 @@ namespace Online_Shopping.Controllers
         public ActionResult DeliveryStatus()
         {
             ViewBag.Complete = cartService.verifiedSales().ToList();
-            ViewBag.Cancelled=cartService.GetAbortedDeleveries().ToList(); 
+            ViewBag.Cancelled = cartService.GetAbortedDeleveries().ToList();
 
             return View();
         }

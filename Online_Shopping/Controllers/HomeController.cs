@@ -57,6 +57,24 @@ namespace Online_Shopping.Controllers
             ViewBag.CurrentPage = currentPage;
             return View();
         }
+        public ActionResult HighToLow()
+        {
+            var category = categoryService.GetCategory();
+            ViewBag.Category = category;
+            var Product = productService.GetAllProducts().OrderByDescending(c=>c.price);
+            ViewBag.product = Product;
+            return View("Index");
+
+
+        }
+        public ActionResult LowToHigh()
+        {
+            var category = categoryService.GetCategory();
+            ViewBag.Category = category;
+            var Product = productService.GetAllProducts().OrderBy(c => c.price);
+            ViewBag.product = Product;
+            return View("Index");
+        }
         public ActionResult Search(string searchname)
         {
             IEnumerable<ProductResource> product;

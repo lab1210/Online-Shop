@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "welcome";
+    Layout = null;
+
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to [Your Online Shop]!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #d32f2f;
+        }
+
+        p {
+            color: #666;
+            margin-top: 15px;
+        }
+
+        .shop-link {
+            color: #d32f2f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Vivi Shop!</h1>
+        <p>Dear @ViewData["UserName"],</p>
+        <p>Thank you for joining Vivi Shop We're excited to have you as part of our online shopping community.</p>
+        <p>As a registered user, you now have access to a wide range of high-quality products, exclusive deals, and a seamless shopping experience.</p>
+        <p>Start exploring our shop and discover the latest trends in fashion, electronics, home essentials, and more.</p>
+        <p>Happy shopping and welcome aboard!</p>
+        <p>Best regards,</p>
+    </div>
+</body>
+</html>
