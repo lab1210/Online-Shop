@@ -1,0 +1,188 @@
+﻿@model Online_Shopping.Resources.ProductResource
+@{
+    ViewBag.Title = "Item_Details";
+    Layout = "~/Views/Shared/_LayoutDetails.cshtml";
+
+}
+
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success justify-content-lg-end" role="alert" id="#messageAlert">
+        @ViewBag.Message
+
+    </div>
+}
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger justify-content-lg-end" role="alert" id="#messageAlert">
+        @ViewBag.Error
+
+    </div>
+}
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="@Model.imagepath" alt="..." /></div>
+            <div class="col-md-6">
+                <div style="display:grid">
+                    <div class="badge" style="border-radius: 50px; background-color: #F6E9D5; color: #D69C45;  ">Free Delivery</div>
+                    <div class="small mb-1">SKU: @Model.SKU</div>
+                </div>
+                <h1 class="display-5 fw-bolder">@Model.Name</h1>
+                @if (Model.Discount_Price == null)
+                {
+                    <div class="fs-5 mb-5">
+                        <span>@Model.price</span>
+                    </div>
+                }
+                else
+                {
+                    <div class="fs-5 mb-5">
+                        <span class="text-decoration-line-through">@Model.price</span>
+                        <span>@Model.Discount_Price</span>
+                    </div>
+
+                }
+                <p class="lead">@Model.description</p>
+
+                @if (ViewBag.Username != null)
+                {
+                    if (ViewBag.InStockQuantity != 0)
+                    {
+                       using (Html.BeginForm("AddToCart", "Home", new { slug = Model.slug }, FormMethod.Post))
+                        {
+
+                            <div class="d-flex">
+                                <input class="form-control text-center me-3" id="inputQuantity" type="number" value="1" min="1" name="quantity" style="max-width: 3rem" max="@ViewBag.InStockQuantity" />
+                                <button class="btn btn-outline-dark flex-shrink-0">
+                                    <i class="bi-cart-fill me-1"></i>
+                                    Add to cart
+                                </button>
+                            </div>
+                            }
+                        }
+
+                    else
+                    {
+                        <div class="d-flex">
+                            <div class="badge position-absolute " style="border-radius: 50px; background-color: #CC021C; padding: 5px 10px;">Sold Out</div>
+
+                        </div>
+                    }
+                }
+                else
+                {
+                    if (ViewBag.InStockQuantity != 0)
+                    {
+                        using (Html.BeginForm("AddToCart", "Home", FormMethod.Post))
+                        {
+
+                            <div class="d-flex">
+                                <input class="form-control text-center me-3" id="inputQuantity" type="number" value="1" min="1" name="Quantity" style="max-width: 3rem" max="@ViewBag.InStockQuantity" />
+                                <a class="btn btn-outline-dark flex-shrink-0" href="@Url.Action("LoginPage","Auth")">
+                                    <i class="bi-cart-fill me-1"></i>
+                                    Add to cart
+                                </a>
+                            </div>
+                        }
+                    }
+
+                    else
+                    {
+                        <div class="d-flex">
+                            <div class="badge position-absolute " style="border-radius: 50px; background-color: #CC021C; padding: 5px 10px;">Sold Out</div>
+
+                        </div>
+                    }
+
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related items section-->
+<section class="py-5 bg-light">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h2 class="fw-bolder mb-4">Related products</h2>
+        <br />
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"style="gap:60px">
+            @foreach (var product in ViewBag.Product)
+            {
+                <div class="col mb-0">
+                    <div class="card h-100" style="transition: transform 0.3s, box-shadow 0.3s; border-radius: 10px; overflow: hidden;width:140%;">
+
+                        <div class="card-body d-flex flex-column" style="height: 100%; display: flex; flex-direction: column; padding: 20px">
+
+                            @if (ViewBag.InStockQuantity== 0)
+                            {
+                                <div class="badge position-absolute " style="border-radius: 50px; background-color: #CC021C; padding: 5px 10px;">Sold Out</div>
+                            }
+                            else
+                            {
+                                <div class="badge position-absolute " style="border-radius: 50px; background-color: #F6E9D5; color: #D69C45;  ">@ViewBag.InStockQuantity in Stock</div>
+                            }
+                            <img class="card-img-top product-img" src="@product.imagepath" alt="..." style="max-width: 100%;max-height: 200px; object-fit: cover; " />
+
+                            <!-- Product details-->
+                            <div class="card-body p-2 flex-grow-1">
+                                <div style="line-height:1.9em">
+                                    <!-- Product name-->
+                                    <div class="d-flex align-items-center">
+                                        <h5 class="fw-bolder text-uppercase " style="font-size: 18px; margin: 0px;overflow:hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                            @product.Name
+                                        </h5>
+                                        @if (product.Discount_Price != 0)
+                                        {
+                                            <span class="badge rounded-pill bg-dark" style="font-size:10px;margin-left:5px">Sale</span>
+                                        }
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-heart" name="heartIconOutline_@product.Name" style="color: #CC021C; padding-left: 50px;"></i>
+                                            <i class="bi bi-heart-fill" name="heartIconFilled_@product.Name" style="color: red; padding-left: 50px; display: none;"></i>
+                                        </div>
+
+
+                                    </div>
+                                    <!-- Product price-->
+                                    @if (product.Discount_Price != null)
+                                    {
+                                        <div style="display:flex;gap:8px">
+                                            <label class="fw-bolder"> ₦@product.Discount_Price <span class="fw-light"><s>₦@product.price</s></span></label>
+
+                                        </div>
+
+
+                                    }
+                                    else
+                                    {
+                                        <label class="fw-bolder">  ₦ @product.price</label>
+
+                                    }
+                                </div>
+
+                            </div>
+                            <!-- Product actions-->
+
+                            <div style="margin-top: -1px; margin-bottom: -30px; margin-left: -30px; margin-right: -30px;">
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="d-grid gap-2">
+                                        <a class="btn btn-light mt-auto text-center" style="background-color: #212529;color:#ffffff; margin-top: auto;" href="@Url.Action("Item_Details", "Home", new { slug = product.slug, categoryid = product.CategoryID })">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+</section>
